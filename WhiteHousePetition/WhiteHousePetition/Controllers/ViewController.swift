@@ -92,6 +92,25 @@ extension ViewController {
     
     // MARK: - Create ShowAlertFilter to set uitextfield as an alert.
     @objc func ShowAlertFilter() {
-        
+        let alertController = UIAlertController(title: "Enter press button🫵🏼", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textfield in
+            textfield.placeholder = "Enter the Letter"
+        }
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak alertController] _ in
+            
+            guard let alertText = alertController?.textFields?[0].text else { return }
+            self?.FilterData(searchText: alertText)
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true)
+    }
+    
+    // MARK: - Create FilterData method for Filter array of post
+    func FilterData(searchText: String) {
+        if searchText.isEmpty {
+            filteredPost = post
+        }
+        filteredPost = post.filter { $0.title.lowercased().hasPrefix(searchText.lowercased())}
+        tableView.reloadData()
     }
 }
