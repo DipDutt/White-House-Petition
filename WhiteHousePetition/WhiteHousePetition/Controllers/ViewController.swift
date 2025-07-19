@@ -17,7 +17,10 @@ class ViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Tap to show an Alert🚨", style: .plain, target: self, action: #selector(showAlert))
         getPetitions()
     }
-    
+}
+
+ // MARK: -  Create Extension
+extension ViewController {
     // MARK: - This Section for DataSource.
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +54,7 @@ class ViewController: UITableViewController {
         }
         
         else {
-             url = "https://jsonplaceholder.typicode.com/posts"
+            url = "https://jsonplaceholder.typicode.com/posts"
         }
         
         guard let urlString = URL(string: url) else { return }
@@ -65,24 +68,23 @@ class ViewController: UITableViewController {
                 }
             } else {
                 self.showError()
-                }
             }
         }
+    }
     
-     // MARK: - Create Show error method as an alert.
+    // MARK: - Create Show error method as an alert.
     func showError() {
         let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-           ac.addAction(UIAlertAction(title: "OK", style: .default))
-           present(ac, animated: true)
-       }
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
     
     
-     // MARK: - Create ShowAlert as an api Value.
-   @objc func showAlert() {
+    // MARK: - Create ShowAlert as an api Value.
+    @objc func showAlert() {
         let ac = UIAlertController(title: "the data comes from the We The People API of the Whitehouse.", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
         
     }
 }
-
