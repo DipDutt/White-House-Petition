@@ -12,17 +12,20 @@ class ViewController: UITableViewController {
     
     var post:[PostModel] = []
     var filteredPost:[PostModel] = []
+    
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Tap to show an Alert🚨", style: .plain, target: self, action: #selector(showAlert))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tap for Filter", style:.plain, target: self, action: #selector(ShowAlertFilter))
         getPetitions()
+        
     }
 }
 
- // MARK: -  Create Extension
+// MARK: -  Create Extension
 extension ViewController {
+    
     // MARK: - This Section for DataSource.
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,6 +69,7 @@ extension ViewController {
                 guard let newPost = try? JSONDecoder().decode([PostModel].self, from: data) else { return }
                 DispatchQueue.main.async { [weak self] in
                     self?.post = newPost
+                    self?.filteredPost = newPost
                     self?.tableView.reloadData()
                 }
             } else {
