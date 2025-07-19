@@ -11,6 +11,7 @@ class ViewController: UITableViewController {
     // MARK: - Properties.
     
     var post:[PostModel] = []
+    var filteredPost:[PostModel] = []
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
