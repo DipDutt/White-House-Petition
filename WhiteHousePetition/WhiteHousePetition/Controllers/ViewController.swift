@@ -26,12 +26,12 @@ extension ViewController {
     // MARK: - This Section for DataSource.
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        post.count
+        filteredPost.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        let posts = post[indexPath.row]
+        let posts = filteredPost[indexPath.row]
         cell.textLabel?.text = posts.title
         cell.detailTextLabel?.text = posts.body
         return cell
@@ -42,7 +42,7 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailvc = DetailViewController()
-        detailvc.detailItem = post[indexPath.row]
+        detailvc.detailItem = filteredPost[indexPath.row]
         navigationController?.pushViewController(detailvc, animated: true)
     }
     
