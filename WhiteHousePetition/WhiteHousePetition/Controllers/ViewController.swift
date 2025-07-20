@@ -63,7 +63,6 @@ extension ViewController {
         }
         
         guard let urlString = URL(string: url) else { return }
-        
         downloadData(fromURL: urlString) { data in
             if let data = data {
                 guard let newPost = try? JSONDecoder().decode([PostModel].self, from: data) else { return }
